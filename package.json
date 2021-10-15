@@ -43,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/carlosrobertosalgueiro/DT-money-react.git",
+  "author": "carlos roberto <carlosrobertounopar01@hotmail.com>",
+  "license": "MIT"
 }
