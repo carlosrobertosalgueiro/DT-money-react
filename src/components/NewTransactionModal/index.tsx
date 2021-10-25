@@ -1,10 +1,12 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, useContext } from 'react'
 import Modal from 'react-modal'
 import { Container, TransactionTypeContainer, RadioBox } from './style'
+import { TransactionContex } from '../../TransactionContext'
 import closeImg from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 import { api } from '../../Services/api'
+
 
 interface NewTransactionModalProps {
     isOpen: boolean;
@@ -12,23 +14,30 @@ interface NewTransactionModalProps {
 }
 
 export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionModalProps) {
+    
+    const {createTransaction} =useContext(TransactionContex)
 
     const [title, setTitle] = useState('')
     const [aumont, setAumont] = useState(0)
     const [category, setCategory] = useState('')
     const [type, setType] = useState('deposit')
 
-    function hendleCreateNewTransaction(event: FormEvent) {
+ async   function hendleCreateNewTransaction(event: FormEvent) {
         event.preventDefault();
-
-     const data ={
+      await  createTransaction({
             title,
             aumont,
             category,
             type
-        }
+        })
 
-        api.post('/transactions', data)
+        setTitle('')
+        setAumont(0)
+        setType('deposit')
+        setCategory('')
+
+        onRequestClose()
+   
     }
 
 

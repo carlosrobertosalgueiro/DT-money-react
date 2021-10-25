@@ -1,6 +1,7 @@
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
-import { useState } from "react";
+import { useState,  } from "react";
+import {  TransactionProvaider } from "./TransactionContext";
 import Modal from 'react-modal';
 import { GlobalStyle } from "./styles/global";
 import { NewTransactionModal } from "./components/NewTransactionModal";
@@ -10,6 +11,8 @@ Modal.setAppElement('#root')
 export function App() {
 
   const [isNewTransactionsModalOpen, setIsNewTransactionsModalOpen] = useState(false)
+
+  
 
 
   function hendleOpenNewTransactionModal() {
@@ -21,12 +24,12 @@ export function App() {
   }
 
   return (
-    <>
+    <TransactionProvaider >
       <Header onOpenNewtransactionModal={hendleOpenNewTransactionModal} />
       <Dashboard />
       <NewTransactionModal isOpen={isNewTransactionsModalOpen}  onRequestClose={hendleCloseNewtransactionModal} />
       <GlobalStyle />
-    </>
+    </ TransactionProvaider>
   );
 }
 

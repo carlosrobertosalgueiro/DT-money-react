@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Modal from 'react-modal'
 import { Interface } from 'readline'
 import logoImg from '../../assets/logo.svg'
+import { TransactionContex } from '../../TransactionContext'
 import { Container, Content } from './styles'
 
 
@@ -12,6 +13,9 @@ interface HeaderProps {
 }
 
 export function Header({onOpenNewtransactionModal}:HeaderProps ) {
+    
+    const data = useContext(TransactionContex)
+
     
 
     return (
